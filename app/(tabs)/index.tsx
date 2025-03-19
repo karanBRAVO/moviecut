@@ -5,8 +5,9 @@ import {
   ScrollView,
   ActivityIndicator,
   FlatList,
+  RefreshControl,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
@@ -21,18 +22,27 @@ function getRandomValue(arr: any) {
 }
 
 const Home = () => {
+  const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
 
   const {
     data: movies,
     loading,
     error,
+    fetchData,
+    reset,
   } = useFetch<IMovieSearch[]>(() =>
     fetchMoviesData({ query: `s=${getRandomValue(MOVIES)}`, random: true })
   );
 
   const handleSearchPress = () => {
     router.push("/search");
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchData();
+    setRefreshing(false);
   };
 
   return (
@@ -45,6 +55,10 @@ const Home = () => {
           minHeight: "100%",
           paddingBottom: 10,
         }}
+        scrollEventThrottle={16}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
 
