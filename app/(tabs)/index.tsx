@@ -14,6 +14,11 @@ import { useRouter } from "expo-router";
 import { useFetch } from "@/hooks/useFetch";
 import { fetchMoviesData } from "@/services/fetchData";
 import MovieCard from "@/components/MovieCard";
+import { MOVIES } from "@/constants/movies";
+
+function getRandomValue(arr: any) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 const Home = () => {
   const router = useRouter();
@@ -22,7 +27,9 @@ const Home = () => {
     data: movies,
     loading,
     error,
-  } = useFetch<IMovieSearch[]>(() => fetchMoviesData({ query: "s=movie" }));
+  } = useFetch<IMovieSearch[]>(() =>
+    fetchMoviesData({ query: `s=${getRandomValue(MOVIES)}`, random: true })
+  );
 
   const handleSearchPress = () => {
     router.push("/search");

@@ -72,30 +72,6 @@ const TabsLayout = () => {
           },
         }}
       />
-      <Tabs.Screen
-        name="saved"
-        options={{
-          headerShown: false,
-          title: "Saved",
-          tabBarIcon: ({ focused }) => {
-            return (
-              <TabIcon focused={focused} icon={icons.save} text={"Saved"} />
-            );
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          headerShown: false,
-          title: "Profile",
-          tabBarIcon: ({ focused }) => {
-            return (
-              <TabIcon focused={focused} icon={icons.person} text={"Profile"} />
-            );
-          },
-        }}
-      />
     </Tabs>
   );
 };

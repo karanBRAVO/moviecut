@@ -75,9 +75,8 @@ const MovieDetails = () => {
             <View className="flex flex-col px-5 mt-5 items-start justify-center">
               <View className="flex flex-row items-center justify-between w-full my-2 p-1">
                 <Image source={icons.save} />
-                <View className="flex flex-row gap-3">
+                <View className="flex flex-row gap-3 flex-wrap">
                   <Box text={moviedetails.Type.toUpperCase()} />
-                  <Box text={moviedetails.Language.toUpperCase()} />
                   <Box text={moviedetails.Rated} />
                 </View>
               </View>
@@ -85,6 +84,8 @@ const MovieDetails = () => {
               <Text className="text-white font-bold text-lg">
                 {moviedetails.Title}
               </Text>
+
+              <Box text={moviedetails.Language.toUpperCase()} />
 
               <Paragraph text={moviedetails.Released} label={"Released"} />
               <Paragraph text={moviedetails.Genre} label={"Genre"} />

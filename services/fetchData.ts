@@ -3,10 +3,22 @@ const OMDB_CONFIG = {
   API_KEY: process.env.EXPO_PUBLIC_OMDB_API_KEY,
 };
 
-export const fetchMoviesData = async ({ query }: { query: string }) => {
+function getRandomNumber(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export const fetchMoviesData = async ({
+  query = "man",
+  random = false,
+}: {
+  query?: string;
+  random?: boolean;
+}) => {
   // query: `i=` -> imdbID, `s=` -> search
   try {
-    const api_url = `${OMDB_CONFIG.BASE_URL}?apikey=${OMDB_CONFIG.API_KEY}&${query}`;
+    const api_url = `${OMDB_CONFIG.BASE_URL}?apikey=${
+      OMDB_CONFIG.API_KEY
+    }&${query}${random ? `&page=${getRandomNumber(1, 100)}` : ""}`;
 
     const response = await fetch(api_url, { method: "GET" });
 
