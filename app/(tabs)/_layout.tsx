@@ -61,13 +61,13 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="search"
         options={{
           headerShown: false,
-          title: "Profile",
+          title: "Search",
           tabBarIcon: ({ focused }) => {
             return (
-              <TabIcon focused={focused} icon={icons.person} text={"Profile"} />
+              <TabIcon focused={focused} icon={icons.search} text={"Search"} />
             );
           },
         }}
@@ -85,13 +85,13 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="profile"
         options={{
           headerShown: false,
-          title: "Search",
+          title: "Profile",
           tabBarIcon: ({ focused }) => {
             return (
-              <TabIcon focused={focused} icon={icons.search} text={"Search"} />
+              <TabIcon focused={focused} icon={icons.person} text={"Profile"} />
             );
           },
         }}
