@@ -13,7 +13,9 @@ const MovieCard = (props: Props) => {
           className="w-full h-52 rounded-lg"
           resizeMode="cover"
         />
-        <Text className="text-white text-sm font-bold mt-2">{props.Title}</Text>
+        <Text className="text-white text-sm font-bold mt-2" numberOfLines={1}>
+          {props.Title}
+        </Text>
         <View className="items-start mt-1">
           <Text className="text-gray-500 text-xs">{props.Year}</Text>
         </View>
