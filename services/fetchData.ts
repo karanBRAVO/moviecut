@@ -1,6 +1,8 @@
+import Constants from "expo-constants";
+
 const OMDB_CONFIG = {
-  BASE_URL: "http://www.omdbapi.com/",
-  API_KEY: process.env.EXPO_PUBLIC_OMDB_API_KEY,
+  BASE_URL: "https://www.omdbapi.com/",
+  API_KEY: Constants.expoConfig?.extra?.omdbApiKey,
 };
 
 function getRandomNumber(min: number, max: number) {
