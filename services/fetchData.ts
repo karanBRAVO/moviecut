@@ -3,11 +3,8 @@ const OMDB_CONFIG = {
   API_KEY: process.env.EXPO_PUBLIC_OMDB_API_KEY,
 };
 
-export const fetchMoviesData = async ({
-  query,
-}: {
-  query: string;
-}): Promise<(IMovieDetails | IMovieSearch)[]> => {
+export const fetchMoviesData = async ({ query }: { query: string }) => {
+  // query: `i=` -> imdbID, `s=` -> search
   try {
     const api_url = `${OMDB_CONFIG.BASE_URL}?apikey=${OMDB_CONFIG.API_KEY}&${query}`;
 
@@ -18,7 +15,7 @@ export const fetchMoviesData = async ({
     }
 
     const data = await response.json();
-    return data.Search;
+    return query.trim().startsWith("s") ? data.Search : data;
   } catch (err) {
     throw err;
   }
